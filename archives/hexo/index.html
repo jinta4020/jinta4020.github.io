@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155251475-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155251475-1');
+</script>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Jinta">
+
+
+
+
+
+<title>Hexo + GitHub Pagesでさくっとブログをつくる | Pitlite</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=M+PLUS+1p">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Pitlite" type="application/atom+xml">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Pitlite</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Pitlite</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Hexo + GitHub Pagesでさくっとブログをつくる</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Jinta</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2020-01-02&nbsp;&nbsp;02:40:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>静的Webサイトジェネレーター<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>で技術のアウトプットをするためのブログをさくっとつくります。<br>デプロイはGitHub Pagesで行います。完成したものがこちらのブログです。<br>簡単な流れと、はまったところだけメモします。</p>
+<h3 id="バージョン情報"><a href="#バージョン情報" class="headerlink" title="バージョン情報"></a>バージョン情報</h3><table>
+<thead>
+<tr>
+<th align="left">システム</th>
+<th align="left">バージョン</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">OS</td>
+<td align="left">Windows 10 Home</td>
+</tr>
+<tr>
+<td align="left">Node.js</td>
+<td align="left">v12.11.0</td>
+</tr>
+<tr>
+<td align="left">yarn</td>
+<td align="left">1.19.0</td>
+</tr>
+<tr>
+<td align="left">hexo</td>
+<td align="left">4.0.0</td>
+</tr>
+</tbody></table>
+<h3 id="Hexoを導入する"><a href="#Hexoを導入する" class="headerlink" title="Hexoを導入する"></a>Hexoを導入する</h3><p>Node.jsとnpmが導入されているなら、基本的には<a href="https://hexo.io/docs/" target="_blank" rel="noopener">公式ドキュメント</a>のとおりに導入するだけです。</p>
+<h4 id="Themeを選ぶ"><a href="#Themeを選ぶ" class="headerlink" title="Themeを選ぶ"></a>Themeを選ぶ</h4><p>自分は<a href="https://hexo.io/themes/" target="_blank" rel="noopener">公式テーマライブラリ</a>で探しました。<br><a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank" rel="noopener">Chic</a>というテーマがシンプルで気に入ったのでこれに決定。README.mdを参考にして導入しました。</p>
+<p>フォントが中国語になっていたので、cssファイルを編集して日本語のWebフォントに変更しました。</p>
+<h4 id="テーマの設定"><a href="#テーマの設定" class="headerlink" title="テーマの設定"></a>テーマの設定</h4><p>ルートディレクトリの<br>テーマフォルダにある <code>_config.yml</code> を上書きして、タイトルなどを設定します。<br>ルートディレクトリの <code>_config.yml</code> に追加すると、キーが重複して</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FATAL duplicated mapping key at line *, column *:</span><br></pre></td></tr></table></figure>
+<p>というエラーがでるのでご注意ください。</p>
+<p>言語とタイムゾーンは日本のものに設定します。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">ja</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">'Asia/Tokyo'</span></span><br></pre></td></tr></table></figure>
+
+<p>その他、タイトル・メニューなども設定できます。<br>テーマ独自の設定項目もあります。テーマのREADME.mdを参考にしましょう。</p>
+<h4 id="複数タグの設定方法"><a href="#複数タグの設定方法" class="headerlink" title="複数タグの設定方法"></a>複数タグの設定方法</h4><p>記事に複数のタグを設定したい場合は、</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Hexo</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Node.js</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br></pre></td></tr></table></figure>
+
+<p>こういう記法で列挙しましょう。</p>
+<h4 id="FEEDの導入"><a href="#FEEDの導入" class="headerlink" title="FEEDの導入"></a>FEEDの導入</h4><p>npmパッケージの <code>hexo-generator-feed</code> をインストールするだけで導入できました。</p>
+<h4 id="更新日の設定"><a href="#更新日の設定" class="headerlink" title="更新日の設定"></a>更新日の設定</h4><p>記事ファイルのヘッダーに</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">updated:</span> <span class="number">2020</span><span class="number">-01</span><span class="number">-01</span> <span class="number">10</span><span class="string">:00:00</span></span><br></pre></td></tr></table></figure>
+
+<p>という記述を追加すると、更新日が設定できます。</p>
+<h4 id="Google-Analyticsの設定"><a href="#Google-Analyticsの設定" class="headerlink" title="Google Analyticsの設定"></a>Google Analyticsの設定</h4><p>モチベーションに繋がるので、Google Analyticsは導入したいところ。<br>テーマファイルのejsファイルに直接タグを追加しました。</p>
+<h3 id="GitHub-Pagesでデプロイする"><a href="#GitHub-Pagesでデプロイする" class="headerlink" title="GitHub Pagesでデプロイする"></a>GitHub Pagesでデプロイする</h3><p>GitHub Pagesでのデプロイについても、<a href="https://hexo.io/docs/github-pages" target="_blank" rel="noopener">公式ドキュメント</a>が充実していたのでそちらの、 <strong>Private repository</strong> の項目を参考にしました。<br>ですが、GitHub Pagesのユーザーページにデプロイしたかったので、多少手順が変わっています。<br>( <code>https://&lt;username&gt;.github.io/&lt;project&gt;/</code> ではなく、 <code>https://&lt;username&gt;.github.io/</code> にデプロイしたかった)</p>
+<ol>
+<li><code>&lt;username&gt;.github.io</code> という空のリポジトリを作成します。(publicで作らないと無料でGitHub Pagesが使えないので注意)</li>
+<li>ルートディレクトリの <code>_config.yml</code> に公式ドキュメントを参考に記述を追加し、branchをmasterに変更</li>
+<li>ルートで <code>$ hexo clean</code> と <code>$ hexo deploy</code> を実行 (自分はnpm-run-allを導入して、1コマンドにまとめました)</li>
+</ol>
+<h3 id="おわりに"><a href="#おわりに" class="headerlink" title="おわりに"></a>おわりに</h3><p>テーマは、モチベーションのあるときに少しずつ改修するつもりなので、今後改修した内容はこちらに追記します。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Jinta</span>
+                    </p>
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Hexo/"># Hexo</a>
+                    
+                        <a href="/tags/Node-js/"># Node.js</a>
+                    
+                        <a href="/tags/GitHub-Pages/"># GitHub Pages</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/archives/ark-vps-setup/">VPSでARKの新DLC、Genesisのサーバーを構築する</a>
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Jinta | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
