@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jinta4020.github.io/"/>
-  <updated>2020-03-01T23:55:14.752Z</updated>
+  <updated>2020-03-02T03:50:29.727Z</updated>
   <id>https://jinta4020.github.io/</id>
   
   <author>
@@ -15,21 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>vultr-scale-up</title>
-    <link href="https://jinta4020.github.io/archives/vultr-scale-up/"/>
-    <id>https://jinta4020.github.io/archives/vultr-scale-up/</id>
-    <published>2020-03-01T23:55:14.752Z</published>
-    <updated>2020-03-01T23:55:14.752Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>VPSでARKの新DLC、Genesisのサーバーを構築する</title>
